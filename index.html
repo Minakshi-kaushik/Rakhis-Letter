@@ -1,0 +1,981 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#eee5d5">
+<title>For My Dearest Rakhi | A Letter From The Heart</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --cream: #eee5d5;
+  --paper: #f8f0df;
+  --brown: #4d382b;
+  --gold: #a58a5b;
+  --wine: #713c40;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--brown);
+  background: radial-gradient(ellipse at center, #f8f3e9 0%, #e5d8c3 100%);
+  font-family: 'Cormorant Garamond', serif;
+  overflow-x: hidden;
+}
+
+/* Antique paper grain */
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: .17;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.25'/%3E%3C/svg%3E");
+  z-index: 20;
+}
+
+/* Floating golden dust */
+
+.particles {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.particle {
+  position: absolute;
+  bottom: -20px;
+  width: 3px;
+  height: 3px;
+  background: #a58a5b;
+  border-radius: 50%;
+  opacity: 0;
+  box-shadow: 0 0 8px #c5a66e;
+  animation: floatDust linear infinite;
+}
+
+@keyframes floatDust {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+  15% { opacity: .5; }
+  80% { opacity: .35; }
+  100% {
+    transform: translateY(-110vh) translateX(35px);
+    opacity: 0;
+  }
+}
+
+/* Main layout */
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 35px 18px;
+  position: relative;
+  z-index: 2;
+}
+
+.intro {
+  text-align: center;
+  width: 100%;
+  transition: opacity 1s, transform 1s;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  font-size: 12px;
+  color: #94784f;
+}
+
+.intro h1 {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(45px, 8vw, 78px);
+  font-weight: 400;
+  margin: 18px 0 8px;
+  color: #6c4840;
+}
+
+.subtitle {
+  font-family: 'IM Fell English', serif;
+  font-style: italic;
+  font-size: 17px;
+  color: #8a7662;
+  margin-bottom: 45px;
+}
+
+/* Envelope */
+
+.envelope-area {
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 1000px;
+}
+
+.envelope {
+  position: relative;
+  width: min(340px, 84vw);
+  height: 210px;
+  background: #c8ae88;
+  cursor: pointer;
+  border-radius: 3px;
+  box-shadow: 0 20px 40px #58432d35;
+  transition: transform .5s;
+}
+
+.envelope:hover {
+  transform: translateY(-5px);
+}
+
+.envelope-back {
+  position: absolute;
+  inset: 0;
+  background: #cbb493;
+}
+
+.paper-inside {
+  position: absolute;
+  width: 88%;
+  height: 175px;
+  background: #f7edda;
+  left: 6%;
+  top: 10px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 20px;
+  font-family: 'Great Vibes', cursive;
+  font-size: 25px;
+  color: #8c6954;
+  transition: transform 1.5s ease;
+}
+
+.envelope-front {
+  position: absolute;
+  inset: 0;
+  background: #d7c19e;
+  clip-path: polygon(0 0, 50% 56%, 100% 0, 100% 100%, 0 100%);
+  z-index: 3;
+}
+
+.envelope-side {
+  position: absolute;
+  inset: 0;
+  background: #bda17d;
+  clip-path: polygon(0 0, 50% 60%, 0 100%);
+  z-index: 2;
+}
+
+.envelope-side.right {
+  clip-path: polygon(100% 0, 50% 60%, 100% 100%);
+  background: #c4aa85;
+}
+
+.flap {
+  position: absolute;
+  inset: 0;
+  background: #ddc9a8;
+  clip-path: polygon(0 0, 100% 0, 50% 62%);
+  transform-origin: top;
+  transition: transform 1s ease;
+  z-index: 5;
+}
+
+.seal {
+  position: absolute;
+  z-index: 7;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #a35d60, #692e35 70%);
+  color: #e8d2a9;
+  display: grid;
+  place-items: center;
+  font-family: 'Great Vibes', cursive;
+  font-size: 31px;
+  left: 50%;
+  top: 52%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 3px 8px #3f20204c, inset 0 0 5px #e5b7a0;
+  transition: opacity .5s, transform .5s;
+  z-index: 7;
+}
+
+.envelope.open .flap {
+  transform: rotateX(180deg);
+  z-index: 1;
+}
+
+.envelope.open .seal {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(1.5);
+}
+
+.envelope.open .paper-inside {
+  transform: translateY(-150px);
+  z-index: 4;
+}
+
+.open-button {
+  margin-top: 25px;
+  padding: 13px 32px;
+  background: transparent;
+  border: 1px solid #a58a5b;
+  color: #71553e;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.open-button:hover {
+  background: #a58a5b;
+  color: white;
+}
+
+.open-button:disabled {
+  opacity: .5;
+  cursor: default;
+}
+
+.hint {
+  font-style: italic;
+  font-size: 15px;
+  color: #9b866d;
+  margin-top: 15px;
+}
+
+.footer-note {
+  margin-top: 50px;
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: #a28b6c;
+}
+
+.intro.hide {
+  opacity: 0;
+  transform: scale(.94);
+  pointer-events: none;
+}
+
+/* Letter */
+
+.letter-page {
+  display: none;
+  width: 100%;
+  max-width: 850px;
+  margin: auto;
+  opacity: 0;
+  transform: translateY(25px);
+  transition: opacity 1.5s, transform 1.5s;
+}
+
+.letter-page.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.letter {
+  position: relative;
+  padding: clamp(35px, 7vw, 75px);
+  background:
+    radial-gradient(ellipse at top left, #fff8e9 0%, transparent 55%),
+    linear-gradient(120deg, #f8f0df, #eee1c7);
+  box-shadow: 0 15px 50px #58432d25;
+  border: 1px solid #d7c4a1;
+  outline: 1px solid #c6ac81;
+  outline-offset: -10px;
+  animation: paperAppear 1.5s ease both;
+}
+
+@keyframes paperAppear {
+  from {
+    opacity: 0;
+    transform: translateY(35px) scale(.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.letter::before {
+  content: "✦";
+  position: absolute;
+  top: 23px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #b49a6b;
+  font-size: 19px;
+}
+
+.letter-top {
+  text-align: center;
+  margin: 15px 0 40px;
+}
+
+.letter-top .small {
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-size: 11px;
+  color: #9d8056;
+}
+
+.letter-top h2 {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(36px, 6vw, 56px);
+  font-weight: 400;
+  margin: 15px 0;
+  color: #714a40;
+}
+
+.letter-body {
+  font-family: 'IM Fell English', serif;
+  font-size: clamp(17px, 2.2vw, 20px);
+  line-height: 1.85;
+  color: #574437;
+}
+
+.letter-body p {
+  margin: 0 0 19px;
+}
+
+.letter-body .emphasis {
+  text-align: center;
+  font-style: italic;
+  color: #81504b;
+  font-size: 23px;
+  margin: 30px 0;
+}
+
+.signature {
+  text-align: right;
+  margin-top: 40px;
+  font-family: 'IM Fell English', serif;
+  font-size: 18px;
+  line-height: 1.65;
+  color: #72513f;
+}
+
+.signature span {
+  font-family: 'Great Vibes', cursive;
+  font-size: 39px;
+  color: #80534a;
+}
+
+.letter-end {
+  text-align: center;
+  color: #a58a5b;
+  margin-top: 35px;
+  letter-spacing: 5px;
+}
+
+/* Music control */
+
+.music-button {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  border: 1px solid #b49a6b;
+  background: #f7efdf;
+  color: #72543d;
+  border-radius: 50px;
+  padding: 11px 17px;
+  cursor: pointer;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px;
+  z-index: 30;
+  display: none;
+  box-shadow: 0 3px 12px #58432d18;
+}
+
+.music-button.show {
+  display: block;
+}
+
+.music-button:hover {
+  background: #e9dcc5;
+}
+
+/* End note */
+
+.bottom-note {
+  text-align: center;
+  padding: 25px 10px 10px;
+  color: #9b8263;
+  font-family: 'Great Vibes', cursive;
+  font-size: 27px;
+}
+
+@media(max-width: 600px) {
+  .page {
+    padding: 25px 13px;
+  }
+
+  .letter {
+    padding: 43px 27px;
+  }
+
+  .letter-body {
+    line-height: 1.75;
+  }
+
+  .subtitle {
+    margin-bottom: 35px;
+  }
+
+  .music-button {
+    right: 12px;
+    bottom: 12px;
+  }
+}
+
+
+
+/* =================================
+   MOBILE RESPONSIVENESS
+================================= */
+
+@media screen and (max-width: 768px) {
+
+  body {
+    overflow-x: hidden;
+  }
+
+  .page {
+    min-height: 100svh;
+    padding: 30px 16px;
+    align-items: center;
+  }
+
+  .intro {
+    max-width: 100%;
+  }
+
+  .eyebrow {
+    font-size: 10px;
+    letter-spacing: 3px;
+  }
+
+  .intro h1 {
+    font-size: clamp(43px, 11vw, 65px);
+    line-height: 1.2;
+  }
+
+  .subtitle {
+    font-size: 15px;
+    line-height: 1.5;
+    max-width: 300px;
+    margin: 10px auto 35px;
+  }
+
+  .envelope-area {
+    height: 225px;
+  }
+
+  .envelope {
+    width: min(310px, 84vw);
+    height: 190px;
+  }
+
+  .paper-inside {
+    height: 155px;
+    font-size: 23px;
+  }
+
+  .envelope.open .paper-inside {
+    transform: translateY(-125px);
+  }
+
+  .seal {
+    width: 49px;
+    height: 49px;
+    font-size: 27px;
+  }
+
+  .open-button {
+    padding: 13px 25px;
+    font-size: 17px;
+    min-height: 46px;
+  }
+
+  .hint {
+    font-size: 14px;
+    max-width: 280px;
+    margin: 15px auto 0;
+  }
+
+  .footer-note {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    margin-top: 38px;
+  }
+
+  /* Letter */
+
+  .letter-page {
+    width: 100%;
+    max-width: 100%;
+    padding: 4px 0 30px;
+  }
+
+  .letter {
+    width: 100%;
+    padding: 46px 25px 35px;
+    outline-offset: -8px;
+  }
+
+  .letter-top {
+    margin: 15px 0 32px;
+  }
+
+  .letter-top .small {
+    font-size: 9px;
+    letter-spacing: 2.5px;
+  }
+
+  .letter-top h2 {
+    font-size: clamp(35px, 9vw, 48px);
+    line-height: 1.2;
+  }
+
+  .letter-body {
+    font-size: 18px;
+    line-height: 1.8;
+    text-align: left;
+    overflow-wrap: break-word;
+  }
+
+  .letter-body p {
+    margin-bottom: 19px;
+  }
+
+  .letter-body .emphasis {
+    font-size: 21px;
+    line-height: 1.6;
+    padding: 5px 0;
+  }
+
+  .signature {
+    font-size: 16px;
+    line-height: 1.7;
+    margin-top: 35px;
+  }
+
+  .signature span {
+    font-size: 36px;
+  }
+
+  .letter-end {
+    font-size: 12px;
+    letter-spacing: 3px;
+    margin-top: 28px;
+  }
+
+  .bottom-note {
+    font-size: 25px;
+  }
+
+  /* Music control */
+
+  .music-button {
+    right: 12px;
+    bottom: 12px;
+    padding: 10px 15px;
+    font-size: 14px;
+    z-index: 100;
+  }
+
+  /* Better touch interaction */
+
+  .envelope,
+  .open-button,
+  .music-button {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+}
+
+/* Smaller phones */
+
+@media screen and (max-width: 380px) {
+
+  .letter {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .letter-body {
+    font-size: 17px;
+    line-height: 1.75;
+  }
+
+  .intro h1 {
+    font-size: 42px;
+  }
+
+  .envelope {
+    width: 275px;
+  }
+
+  .signature {
+    font-size: 15px;
+  }
+}
+
+/* Reduced motion accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="particles" id="particles"></div>
+
+<main class="page">
+
+<section class="intro" id="intro">
+
+  <div class="eyebrow">A little something, from my heart</div>
+
+  <h1>For My Dearest Rakhi</h1>
+
+  <div class="subtitle">
+    A letter to be opened before your forever begins...
+  </div>
+
+  <div class="envelope-area">
+    <div class="envelope" id="envelope" onclick="openLetter()">
+
+      <div class="envelope-back"></div>
+
+      <div class="paper-inside">
+        A little piece of my heart...
+      </div>
+
+      <div class="envelope-side"></div>
+      <div class="envelope-side right"></div>
+      <div class="envelope-front"></div>
+      <div class="flap"></div>
+
+      <div class="seal">R</div>
+    </div>
+  </div>
+
+  <button class="open-button" id="openButton" onclick="openLetter()">
+    Open your letter
+  </button>
+
+  <div class="hint">
+    Take a little moment. This one's just for you.
+  </div>
+
+  <div class="footer-note">
+    WRITTEN WITH LOVE · YOUR SISTER, ALWAYS
+  </div>
+
+</section>
+
+<section class="letter-page" id="letterPage">
+
+  <article class="letter">
+
+    <header class="letter-top">
+      <div class="small">A letter from the heart</div>
+      <h2>To My Dearest Sister...</h2>
+      <div class="small">Before your forever begins</div>
+    </header>
+
+    <div class="letter-content">
+
+  <p><strong>To My Dearest Sister, My Dearest Friend, and My Love…</strong></p>
+
+  <p>I can't exactly think of where to begin.</p>
+
+  <p>Whenever I think of you, my mind and heart go into the most beautiful, soft, warm and safe vibes. You are the one who, of course, knows everything about me. The one who can control me with just your eyes. Yes, I still remember… and always will.</p>
+
+  <p>I genuinely believe we were meant to be together.</p>
+
+  <p>Those black tops, yellow skirts and the same outfits at Mama's wedding… then always ending up in similar outfits. Those <em>WOWWW, WOWWW</em> gown moments (bohot embarrassing at the same time 😂), saath mein woh saari bakwaas baatein karna… our random plans of <em>"Mars pe jaake baste hain"</em> 😂… and everything.</p>
+
+  <p>Our bond… jisse ghar waalon ko bhi jealousy hoti hai! 😂</p>
+
+  <p>It's funny how we have grown up, but somewhere inside, I still see us as those two girls doing all the stupid things together, laughing over absolutely nothing and making memories out of the smallest moments. I wish I could pause some of those moments and keep them forever.</p>
+
+  <p>And now, I can't even imagine the phase when I didn't know that you existed. Can't even think of my life without you.</p>
+
+  <p>Yep, you have found your life partner, and he is definitely great. But for me… you were, are and will always be the bestest one. ❤️</p>
+
+  <p>I wish I could give you all the happiness, blessings, love, care, security, prosperity and everything that I have. Everything beautiful that life has to offer.</p>
+
+  <p>And yep, I will ALWAYS be the third wheel between you two. Not negatively, but I simply cannot leave you. You know too many of my secrets, haina? 🤔😅</p>
+
+  <p>Meri life ka sabse exciting event aa raha hai, jiske liye main kab se wait kar rahi thi… TERI SHADIIII!</p>
+
+  <p>Never thought ki itna emotional feel karungi is baare mein, but here I am… with all the happiness, a little jealousy, emotions and overwhelming feelings everywhere.</p>
+
+  <p>When you walk towards your new life, I hope you know that a part of me will always be standing right beside you, cheering for you, annoying you and loving you just as much as ever.</p>
+
+  <p>Things might change, routines might change, and we might not get to spend every moment together like before. But one thing I never want to change is us. You'll always have the same place in my life, no matter where life takes us.</p>
+
+  <p>Bas tu hamesha khush rahe, bakwaas karti rahe, and jo tu chahe tujhe sab mileee.</p>
+
+  <p>And if ever, anytime, kabhi kuch lage, kuch ho… then you know, I will ALWAYS be there for you. No matter what, no matter when.</p>
+
+  <p>And haan, ek baat aur…</p>
+
+  <p>Bata dena mere jiju ko ki tu usse pehle mere peeche baithi thi bike pe. FLEXXX! 😁😉</p>
+
+  <p>Bas tu ab tayyari shuru karrr!</p>
+
+  <p class="emphasis">Believe me, you were, you are AND you will ALWAYS be my love. ❤️</p>
+
+  <p>Our souls definitely have that BFF bonding. Some connections are just meant to be, and ours is one of them.</p>
+
+  <p>If I ever get another chance to choose my sister, my best friend, or my person in another lifetime, I would still choose you. Every single time.</p>
+
+  <div class="signature">
+    Forever your sister,<br>
+    your best friend,<br>
+    your partner in all the bakwaas,<br>
+    and your unofficial third wheel.
+    <br><br>
+    <span>Byeeeeee! ❤️</span>
+  </div>
+
+</div>
+
+    <div class="letter-end">
+      ✦ &nbsp; WITH LOVE, ALWAYS &nbsp; ✦
+    </div>
+
+  </article>
+
+  <div class="bottom-note">
+    Some bonds are forever...
+  </div>
+
+</section>
+
+</main>
+
+<button class="music-button" id="musicButton" onclick="toggleMusic()">
+  ♫ Music: On
+</button>
+
+<script>
+
+/* Floating particles */
+
+const particleContainer = document.getElementById("particles");
+
+for (let i = 0; i < 32; i++) {
+  const particle = document.createElement("div");
+  particle.className = "particle";
+
+  particle.style.left = Math.random() * 100 + "%";
+  particle.style.animationDuration = (12 + Math.random() * 16) + "s";
+  particle.style.animationDelay = (Math.random() * 15) + "s";
+  particle.style.width = (2 + Math.random() * 2) + "px";
+  particle.style.height = particle.style.width;
+
+  particleContainer.appendChild(particle);
+}
+
+/* Envelope and letter */
+
+let opened = false;
+
+function openLetter() {
+  if (opened) return;
+
+  opened = true;
+
+  const envelope = document.getElementById("envelope");
+  const intro = document.getElementById("intro");
+  const button = document.getElementById("openButton");
+
+  button.disabled = true;
+  button.textContent = "Opening your letter...";
+
+  envelope.classList.add("open");
+
+  // Music starts following the user's click
+  startMusic();
+
+  setTimeout(() => {
+    intro.classList.add("hide");
+
+    setTimeout(() => {
+      intro.style.display = "none";
+
+      const letter = document.getElementById("letterPage");
+      letter.style.display = "block";
+
+      requestAnimationFrame(() => {
+        letter.classList.add("show");
+      });
+
+      document.getElementById("musicButton").classList.add("show");
+
+    }, 900);
+
+  }, 1700);
+}
+
+/* Soft piano-style instrumental */
+
+let audioContext = null;
+let musicOn = false;
+let musicTimer = null;
+
+function playNote(frequency, start, duration, volume) {
+
+  const oscillator = audioContext.createOscillator();
+  const gain = audioContext.createGain();
+
+  oscillator.type = "sine";
+  oscillator.frequency.value = frequency;
+
+  gain.gain.setValueAtTime(0, start);
+  gain.gain.linearRampToValueAtTime(volume, start + 0.5);
+  gain.gain.exponentialRampToValueAtTime(0.001, start + duration);
+
+  oscillator.connect(gain);
+  gain.connect(audioContext.destination);
+
+  oscillator.start(start);
+  oscillator.stop(start + duration);
+}
+
+function playMelody() {
+
+  if (!audioContext || !musicOn) return;
+
+  const now = audioContext.currentTime;
+
+  // A gentle, original piano-inspired melody
+  const melody = [
+    [261.63, 0],
+    [329.63, 1],
+    [392.00, 2],
+    [329.63, 3],
+    [293.66, 4],
+    [349.23, 5],
+    [440.00, 6],
+    [349.23, 7]
+  ];
+
+  melody.forEach(([frequency, delay]) => {
+
+    const start = now + delay * 0.5;
+
+    playNote(frequency, start, 3.2, 0.055);
+    playNote(frequency * 2, start, 2.5, 0.012);
+
+  });
+}
+
+async function startMusic() {
+
+  try {
+
+    if (!audioContext) {
+      audioContext = new (
+        window.AudioContext || window.webkitAudioContext
+      )();
+    }
+
+    await audioContext.resume();
+
+    musicOn = true;
+
+    playMelody();
+
+    musicTimer = setInterval(playMelody, 4500);
+
+    updateMusicButton();
+
+  } catch (error) {
+    console.log("Audio could not start:", error);
+  }
+}
+
+function toggleMusic() {
+
+  if (!audioContext) {
+    startMusic();
+    return;
+  }
+
+  if (musicOn) {
+
+    musicOn = false;
+
+    clearInterval(musicTimer);
+
+    audioContext.suspend();
+
+  } else {
+
+    musicOn = true;
+
+    audioContext.resume();
+
+    playMelody();
+
+    musicTimer = setInterval(playMelody, 4500);
+
+  }
+
+  updateMusicButton();
+}
+
+function updateMusicButton() {
+
+  document.getElementById("musicButton").textContent =
+    musicOn ? "♫ Music: On" : "♫ Music: Off";
+
+}
+
+</script>
+
+</body>
+</html>
